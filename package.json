@@ -1,0 +1,27 @@
+{
+  "name": "bp-api",
+  "version": "0.0.0",
+  "description": "Collection of JSON-RPC APIs provided by Brustpumpe",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "lint": "node scripts/build.js && node scripts/validate.js",
+    "mock-server": "open-rpc-mock-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frost718/bp-api.git"
+  },
+  "author": "Erik Gostischa-Franta",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/frost718/bp-api/issues"
+  },
+  "homepage": "https://github.com/frost718/bp-api#readme",
+  "dependencies": {
+    "@open-rpc/schema-utils-js": "^1.15.0",
+    "@open-rpc/mock-server": "^1.7.4",
+    "json-schema-merge-allof": "^0.8.1"
+  }
+}

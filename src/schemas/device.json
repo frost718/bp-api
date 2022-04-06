@@ -1,0 +1,24 @@
+{
+  "DeviceInformation": {
+    "title": "Response to FINF Command",
+    "type": "object",
+    "required": [
+      "serialDevice",
+      "versionFw",
+      "dateManifac"
+    ],
+    "properties": {
+      "serialDevice": {
+        "title": "Serial Number",
+        "type": "integer",
+        "minimum": 0
+      },
+      "versionFw": {
+        "$ref": "#/components/schemas/versionFw"
+      },
+      "dateManifac": {
+        "$ref": "#/components/schemas/dateTimeISO8601"
+      }
+    }
+  }
+}

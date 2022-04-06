@@ -1,0 +1,147 @@
+[
+  {
+    "name": "FINF",
+    "summary": "Get Firmware Information",
+    "paramStructure": "by-name",
+    "params": [
+      {
+        "name": "setter",
+        "description": "Write Operation",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "result": {
+      "name": "Device Information",
+      "schema": {
+        "$ref": "#/components/schemas/DeviceInformation"
+      }
+    },
+    "examples": [
+      {
+        "name": "valid example",
+        "params": [
+          {
+            "name": "setter",
+            "value": false
+          }
+        ],
+        "result": {
+          "name": "listFirmwareExample",
+          "value": {
+            "serialDevice": 59660293,
+            "versionFw": "FW_124_BP20_V681416352_84",
+            "dateManifac": "2062-07-30T22:12:31"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "FFLA",
+    "summary": "Flash Firmware onto the device",
+    "paramStructure": "by-name",
+    "params": [
+      {
+        "name": "setter",
+        "description": "Write Operation",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "result": {
+      "name": "tbd",
+      "schema": {
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "DMOD",
+    "summary": "Get Status/Modus of the Device (PreReady, Milkflow)",
+    "paramStructure": "by-name",
+    "params": [
+      {
+        "name": "setter",
+        "description": "Write Operation",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "result": {
+      "name": "modus",
+      "schema": {
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "NDAT",
+    "summary": "Get or Set the Manufacturing Date",
+    "paramStructure": "by-name",
+    "params": [
+      {
+        "name": "setter",
+        "description": "Write Operation",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "result": {
+      "name": "manufacture",
+      "schema": {
+        "$ref": "#/components/schemas/dateTimeISO8601"
+      }
+    }
+  },
+  {
+    "name": "ZDAT",
+    "summary": "Get or Set the Calibration Date",
+    "paramStructure": "by-name",
+    "params": [
+      {
+        "name": "setter",
+        "description": "Write Operation",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "result": {
+      "name": "calib",
+      "schema": {
+        "$ref": "#/components/schemas/dateTimeISO8601"
+      }
+    }
+  },
+  {
+    "name": "DIEF",
+    "summary": "Get or Set the Serial Number",
+    "paramStructure": "by-name",
+    "params": [
+      {
+        "name": "setter",
+        "description": "Write Operation",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "result": {
+      "name": "serial",
+      "schema": {
+        "type": "string"
+      }
+    }
+  }
+]
