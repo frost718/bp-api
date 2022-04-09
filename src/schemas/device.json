@@ -1,23 +1,40 @@
 {
   "DeviceInformation": {
-    "title": "Response to FINF Command",
+    "title": "Firmware/PCB Versions and Serial Numbers, Manufacturing Date and Calibration Data",
     "type": "object",
     "required": [
-      "serialDevice",
       "versionFw",
-      "dateManifac"
+      "versionPcb",
+      "serialDevice",
+      "serialPcb",
+      "dateManifac",
+      "dateCalib",
+      "intervalCalibration"
     ],
     "properties": {
-      "serialDevice": {
-        "title": "Serial Number",
-        "type": "integer",
-        "minimum": 0
-      },
       "versionFw": {
         "$ref": "#/components/schemas/versionFw"
       },
+      "versionPcb": {
+        "$ref": "#/components/schemas/uint"
+      },
+      "serialDevice": {
+        "title": "TODO: Bluetooth serial?",
+        "type": "string"
+      },
+      "serialPcb": {
+        "title": "serial number of the pcb board",
+        "type": "string",
+        "pattern": "^V[0-9]{10}$"
+      },
       "dateManifac": {
         "$ref": "#/components/schemas/dateTimeISO8601"
+      },
+      "dateCalib": {
+        "$ref": "#/components/schemas/dateTimeISO8601"
+      },
+      "intervalCalibration": {
+        "$ref": "#/components/schemas/uint"
       }
     }
   }

@@ -1,57 +1,17 @@
 {
+  "uint": {
+    "title": "unsigned positive integer",
+    "type": "integer",
+    "minimum": 0
+  },
   "versionFw": {
-    "title": "Firmware Version",
+    "title": "firmware version, example: FW_124_BP20_V681416352_84",
     "type": "string",
     "pattern": "^FW_124_BP20_V[0-9]{9}_[0-9]{2}$"
   },
   "dateTimeISO8601": {
-    "title": "Valid DateTime Stamp without timezone (2011-01-31T00:59:59), 02-29 leap years are false positives",
+    "title": "valid DateTime without timezone, example: 2011-01-31T00:59:59 (02-29 leap years are false positives)",
     "type": "string",
     "pattern": "^(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))T(?:(?:0|1)[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"
-  },
-  "byte": {
-    "title": "hex encoded byte",
-    "type": "string",
-    "pattern": "^0x([0-9,a-f,A-F]?){1,2}$"
-  },
-  "bytes": {
-    "title": "hex encoded bytes",
-    "type": "string",
-    "pattern": "^0x[0-9a-f]*$"
-  },
-  "bytes8": {
-    "title": "8 hex encoded bytes",
-    "type": "string",
-    "pattern": "^0x[0-9a-f]{16}$"
-  },
-  "bytes32": {
-    "title": "32 hex encoded bytes",
-    "type": "string",
-    "pattern": "^0x[0-9a-f]{64}$"
-  },
-  "bytes256": {
-    "title": "256 hex encoded bytes",
-    "type": "string",
-    "pattern": "^0x[0-9a-f]{512}$"
-  },
-  "bytes65": {
-    "title": "65 hex encoded bytes",
-    "type": "string",
-    "pattern": "^0x[0-9a-f]{512}$"
-  },
-  "uint": {
-    "title": "hex encoded unsigned integer",
-    "type": "string",
-    "pattern": "^0x([1-9a-f]+[0-9a-f]*|0)$"
-  },
-  "uint256": {
-    "title": "hex encoded unsigned integer",
-    "type": "string",
-    "pattern": "^0x[0-9a-f]{64}$"
-  },
-  "hash32": {
-    "title": "32 byte hex value",
-    "type": "string",
-    "pattern": "^0x[0-9a-f]{64}$"
   }
 }

@@ -1,7 +1,7 @@
 [
   {
     "name": "FINF",
-    "summary": "Get Firmware Information",
+    "summary": "Get all Device Information including Calibration Data",
     "paramStructure": "by-name",
     "params": [
       {
@@ -14,7 +14,7 @@
       }
     ],
     "result": {
-      "name": "Device Information",
+      "name": "FINF Response",
       "schema": {
         "$ref": "#/components/schemas/DeviceInformation"
       }
@@ -31,9 +31,13 @@
         "result": {
           "name": "listFirmwareExample",
           "value": {
-            "serialDevice": 59660293,
-            "versionFw": "FW_124_BP20_V681416352_84",
-            "dateManifac": "2062-07-30T22:12:31"
+            "versionFw": "FW_124_BP20_V795615189_46",
+            "versionPcb": 18543481,
+            "serialDevice": "exercitation ex",
+            "serialPcb": "V6646977116",
+            "dateManifac": "2067-10-31T08:54:28",
+            "dateCalib": "2061-01-31T03:46:00",
+            "intervalCalibration": 95912360
           }
         }
       }
