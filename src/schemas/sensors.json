@@ -11,7 +11,10 @@
       "mCurrentSpeed",
       "mV",
       "mPWM",
-      "mwInk"
+      "mwInk",
+      "bStat",
+      "bV",
+      "nutzungsZyklen"
     ],
     "properties": {
       "vLevel": {
