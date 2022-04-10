@@ -1,0 +1,67 @@
+{
+  "SensorInformation": {
+    "title": "Vacuum, Milkflow and Motor information",
+    "type": "object",
+    "required": [
+      "vLevel",
+      "vPrognose",
+      "mfSteigung",
+      "mfDiff",
+      "mSetSpeed",
+      "mCurrentSpeed",
+      "mV",
+      "mPWM",
+      "mwInk"
+    ],
+    "properties": {
+      "vLevel": {
+        "title": "Vacuum Level in Millibar",
+        "$ref": "#/components/schemas/float"
+      },
+      "vPrognose": {
+        "title": "Vacuum Prognose in Millibar",
+        "$ref": "#/components/schemas/float"
+      },
+      "mfSteigung": {
+        "title": "Milkflow Steigung - TODO: Einheit?",
+        "$ref": "#/components/schemas/float"
+      },
+      "mfDiff": {
+        "title": "Milkflow Diff - TODO: Einheit?",
+        "$ref": "#/components/schemas/float"
+      },
+      "mSetSpeed": {
+        "title": "Motor Soll Umdrehungen pro Minute",
+        "$ref": "#/components/schemas/float"
+      },
+      "mCurrentSpeed": {
+        "title": "Motor Ist Umdrehungen pro Minute",
+        "$ref": "#/components/schemas/float"
+      },
+      "mV": {
+        "title": "Motor Strom in Volt",
+        "$ref": "#/components/schemas/float"
+      },
+      "mPWM": {
+        "title": "Motor Pulse Width Modulation",
+        "$ref": "#/components/schemas/uint"
+      },
+      "mwInk": {
+        "title": "Motor Weg Incline - TODO: Einheit?",
+        "$ref": "#/components/schemas/float"
+      },
+      "bStat": {
+        "title": "Battery Status (Charging, Not Charging)",
+        "type": "string"
+      },
+      "bV": {
+        "title": "Batterie Schwelle in Volt",
+        "$ref": "#/components/schemas/float"
+      },
+      "nutzungsZyklen": {
+        "title": "Anzahl der Nutzungszylen nach Intervall gesetzt durch NZIV",
+        "$ref": "#/components/schemas/uint"
+      }
+    }
+  }
+}

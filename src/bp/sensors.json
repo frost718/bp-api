@@ -1,0 +1,37 @@
+[
+  {
+    "name": "DUME",
+    "summary": "Get current value of all sensors",
+    "paramStructure": "by-name",
+    "params": [],
+    "result": {
+      "name": "DUME Response",
+      "schema": {
+        "$ref": "#/components/schemas/SensorInformation"
+      }
+    },
+    "examples": [
+      {
+        "name": "valid example",
+        "params": [],
+        "result": {
+          "name": "listMotorInformationExample",
+          "value": {
+            "vLevel": "967576",
+            "vPrognose": "-392",
+            "mfSteigung": "661134",
+            "mfDiff": "+26947.80542",
+            "mSetSpeed": "840201",
+            "mCurrentSpeed": "-.542433",
+            "mV": "46788222432",
+            "mPWM": 23953665,
+            "mwInk": "75855",
+            "bV": "5043819",
+            "nutzungsZyklen": 83067083,
+            "bStat": "et occaecat commodo consectetur cillum"
+          }
+        }
+      }
+    ]
+  }
+]
