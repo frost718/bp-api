@@ -1,11 +1,13 @@
-# Galateia Bluetooth JSON-RPC API Specification
+# Galateia OpenRPC API Specification
 
-[//]: # (TODO: view the spec link)
+[View the spec][playground]
+
+[playground]: https://playground.open-rpc.org/?schemaUrl=https://raw.githubusercontent.com/frost718/bp-api/main/openrpc.json&uiSchema[appBar][ui:splitView]=false&uiSchema[appBar]
 
 [//]: # (TODO: Stateless, indempotent?)
 
-The Galateia JSON-RPC API Specification is a collection of methods that the 
-pump implements and clients, i.e. Apps, can use to control the pump. 
+The Galateia OpenRPC API Specification is a collection of methods that clients, 
+i.e. Apps, can use to control the pump. 
 This interface allows for log inspection (metrics) as well as downstream tooling 
 (firmware upgrades) and provides the infrastructure to treat different Apps 
 as modules that can be swapped at will.
