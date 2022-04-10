@@ -1,0 +1,422 @@
+{
+	"openrpc": "1.2.4",
+	"info": {
+		"title": "Galateia OpenRpc Spec",
+		"description": "Standard interface for 124_BP2.0",
+		"version": "0.0.2"
+	},
+	"methods": [
+		{
+			"name": "NLED",
+			"summary": "Get or Set night light",
+			"paramStructure": "by-name",
+			"params": [
+				{
+					"name": "on",
+					"description": "Turns night light on or off: true=on, false=off",
+					"required": false,
+					"schema": {
+						"type": "boolean"
+					}
+				}
+			],
+			"result": {
+				"name": "on",
+				"schema": {
+					"title": "Status of night light: true=on, false=off",
+					"type": "boolean"
+				}
+			}
+		},
+		{
+			"name": "MCTR",
+			"summary": "Get or Set motor status and speed",
+			"paramStructure": "by-name",
+			"params": [
+				{
+					"name": "on",
+					"description": "Turns motor on and off: true = motor on, false = motor off",
+					"required": false,
+					"schema": {
+						"type": "boolean"
+					}
+				},
+				{
+					"name": "level",
+					"description": "Set motor level",
+					"required": false,
+					"schema": {
+						"type": "integer"
+					}
+				}
+			],
+			"result": {
+				"name": "MCTR Response",
+				"schema": {
+					"title": "Information about status and speed of the motor",
+					"type": "object",
+					"required": [
+						"on",
+						"level",
+						"setSpeed"
+					],
+					"properties": {
+						"on": {
+							"title": "Status of the Motor: true=on, false=off",
+							"type": "boolean"
+						},
+						"level": {
+							"title": "Current Level/Speed setting of Motor, TODO: 1..10?",
+							"type": "integer",
+							"minimum": 0
+						},
+						"setSpeed": {
+							"type": "string",
+							"pattern": "^[+-]?([0-9]*[.])?[0-9]+$",
+							"title": "Motor Soll Umdrehungen pro Minute"
+						}
+					}
+				}
+			},
+			"examples": [
+				{
+					"name": "valid example",
+					"params": [
+						{
+							"name": "on",
+							"value": false
+						},
+						{
+							"name": "level",
+							"value": 3
+						}
+					],
+					"result": {
+						"name": "listMotorInformationExample",
+						"value": {
+							"on": false,
+							"level": 71451608,
+							"setSpeed": "3226"
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "FINF",
+			"summary": "Get all device information",
+			"paramStructure": "by-name",
+			"params": [],
+			"result": {
+				"name": "FINF Response",
+				"schema": {
+					"title": "Firmware/PCB Versions and Serial Numbers, Manufacturing Date and Nutzungszyklusintervall",
+					"type": "object",
+					"required": [
+						"versionFw",
+						"versionPcb",
+						"serialDevice",
+						"serialPcb",
+						"dateManifac",
+						"nziv"
+					],
+					"properties": {
+						"versionFw": {
+							"title": "firmware version, example: FW_124_BP20_V681416352_84",
+							"type": "string",
+							"pattern": "^FW_124_BP20_V[0-9]{9}_[0-9]{2}$"
+						},
+						"versionPcb": {
+							"title": "version of printed circuit board",
+							"type": "integer",
+							"minimum": 0
+						},
+						"serialDevice": {
+							"title": "TODO: Bluetooth serial?",
+							"type": "string"
+						},
+						"serialPcb": {
+							"title": "serial number of the pcb board",
+							"type": "string",
+							"pattern": "^V[0-9]{10}$"
+						},
+						"dateManifac": {
+							"title": "Date of Manufacture TODO: fixed value?",
+							"type": "string",
+							"pattern": "^(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))T(?:(?:0|1)[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"
+						},
+						"nziv": {
+							"title": "Nutzungszyklus Interval",
+							"type": "integer",
+							"minimum": 0
+						}
+					}
+				}
+			},
+			"examples": [
+				{
+					"name": "valid example",
+					"params": [],
+					"result": {
+						"name": "listFirmwareExample",
+						"value": {
+							"versionFw": "FW_124_BP20_V795615189_46",
+							"versionPcb": 18543481,
+							"serialDevice": "Lorem elit Duis officia nulla",
+							"serialPcb": "V6646977116",
+							"dateManifac": "2067-10-31T08:54:28",
+							"nziv": 3
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "FFLA",
+			"summary": "Flash firmware onto the device",
+			"paramStructure": "by-name",
+			"params": [
+				{
+					"name": "firmware",
+					"description": "Octet Stream?",
+					"required": true,
+					"schema": {
+						"type": "string"
+					}
+				}
+			],
+			"result": {
+				"name": "tbd",
+				"schema": {
+					"type": "string"
+				}
+			}
+		},
+		{
+			"name": "DMOD",
+			"summary": "Get modus of the device (PreReady, Milkflow)",
+			"paramStructure": "by-name",
+			"params": [],
+			"result": {
+				"name": "modus",
+				"schema": {
+					"type": "string"
+				}
+			}
+		},
+		{
+			"name": "NDAT",
+			"summary": "Get or Set the Manufacturing Date",
+			"paramStructure": "by-name",
+			"params": [
+				{
+					"name": "manufacture",
+					"required": false,
+					"schema": {
+						"title": "valid DateTime without timezone, example: 2011-01-31T00:59:59 (02-29 leap years are false positives)",
+						"type": "string",
+						"pattern": "^(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))T(?:(?:0|1)[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"
+					}
+				}
+			],
+			"result": {
+				"name": "manufacture",
+				"schema": {
+					"title": "valid DateTime without timezone, example: 2011-01-31T00:59:59 (02-29 leap years are false positives)",
+					"type": "string",
+					"pattern": "^(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))T(?:(?:0|1)[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"
+				}
+			},
+			"examples": [
+				{
+					"name": "valid example",
+					"params": [],
+					"result": {
+						"name": "manufactureDateExample",
+						"value": "2073-07-31T02:07:14"
+					}
+				}
+			]
+		},
+		{
+			"name": "NZIV",
+			"summary": "Get or Set Nutzungszyklen Interval",
+			"paramStructure": "by-name",
+			"params": [
+				{
+					"name": "interval",
+					"description": "Interval in minutes",
+					"required": false,
+					"schema": {
+						"title": "unsigned integer",
+						"type": "integer",
+						"minimum": 0
+					}
+				}
+			],
+			"result": {
+				"name": "interval",
+				"schema": {
+					"title": "unsigned integer",
+					"type": "integer",
+					"minimum": 0
+				}
+			}
+		},
+		{
+			"name": "DIEF",
+			"summary": "Get or Set the Serial Number",
+			"paramStructure": "by-name",
+			"params": [
+				{
+					"name": "serial",
+					"required": false,
+					"schema": {
+						"type": "string"
+					}
+				}
+			],
+			"result": {
+				"name": "serial",
+				"schema": {
+					"type": "string"
+				}
+			}
+		},
+		{
+			"name": "CECZ",
+			"summary": "Clear system data",
+			"paramStructure": "by-name",
+			"params": [],
+			"result": {
+				"name": "key",
+				"description": "TODO: Device Serial Number (Bluetooth?) to prevent unexpected clearing of calibration data",
+				"schema": {
+					"type": "string"
+				}
+			}
+		},
+		{
+			"name": "DVMD",
+			"summary": "turn device into USB boot mode",
+			"paramStructure": "by-name",
+			"params": [],
+			"result": {
+				"name": "null",
+				"description": "no response from device due to hardware reset",
+				"schema": {
+					"type": "null"
+				}
+			}
+		},
+		{
+			"name": "DUME",
+			"summary": "Get current value of all sensors",
+			"paramStructure": "by-name",
+			"params": [],
+			"result": {
+				"name": "DUME Response",
+				"schema": {
+					"title": "Vacuum, Milkflow and Motor information",
+					"type": "object",
+					"required": [
+						"vLevel",
+						"vPrognose",
+						"mfSteigung",
+						"mfDiff",
+						"mSetSpeed",
+						"mCurrentSpeed",
+						"mV",
+						"mPWM",
+						"mwInk"
+					],
+					"properties": {
+						"vLevel": {
+							"type": "string",
+							"pattern": "^[+-]?([0-9]*[.])?[0-9]+$",
+							"title": "Vacuum Level in Millibar"
+						},
+						"vPrognose": {
+							"type": "string",
+							"pattern": "^[+-]?([0-9]*[.])?[0-9]+$",
+							"title": "Vacuum Prognose in Millibar"
+						},
+						"mfSteigung": {
+							"type": "string",
+							"pattern": "^[+-]?([0-9]*[.])?[0-9]+$",
+							"title": "Milkflow Steigung - TODO: Einheit?"
+						},
+						"mfDiff": {
+							"type": "string",
+							"pattern": "^[+-]?([0-9]*[.])?[0-9]+$",
+							"title": "Milkflow Diff - TODO: Einheit?"
+						},
+						"mSetSpeed": {
+							"type": "string",
+							"pattern": "^[+-]?([0-9]*[.])?[0-9]+$",
+							"title": "Motor Soll Umdrehungen pro Minute"
+						},
+						"mCurrentSpeed": {
+							"type": "string",
+							"pattern": "^[+-]?([0-9]*[.])?[0-9]+$",
+							"title": "Motor Ist Umdrehungen pro Minute"
+						},
+						"mV": {
+							"type": "string",
+							"pattern": "^[+-]?([0-9]*[.])?[0-9]+$",
+							"title": "Motor Strom in Volt"
+						},
+						"mPWM": {
+							"title": "Motor Pulse Width Modulation",
+							"type": "integer",
+							"minimum": 0
+						},
+						"mwInk": {
+							"type": "string",
+							"pattern": "^[+-]?([0-9]*[.])?[0-9]+$",
+							"title": "Motor Weg Incline - TODO: Einheit?"
+						},
+						"bStat": {
+							"title": "Battery Status (Charging, Not Charging)",
+							"type": "string"
+						},
+						"bV": {
+							"type": "string",
+							"pattern": "^[+-]?([0-9]*[.])?[0-9]+$",
+							"title": "Batterie Schwelle in Volt"
+						},
+						"nutzungsZyklen": {
+							"title": "Anzahl der Nutzungszylen nach Intervall gesetzt durch NZIV",
+							"type": "integer",
+							"minimum": 0
+						}
+					}
+				}
+			},
+			"examples": [
+				{
+					"name": "valid example",
+					"params": [],
+					"result": {
+						"name": "listMotorInformationExample",
+						"value": {
+							"vLevel": "967576",
+							"vPrognose": "-392",
+							"mfSteigung": "661134",
+							"mfDiff": "+26947.80542",
+							"mSetSpeed": "840201",
+							"mCurrentSpeed": "-.542433",
+							"mV": "46788222432",
+							"mPWM": 23953665,
+							"mwInk": "75855",
+							"bV": "5043819",
+							"nutzungsZyklen": 83067083,
+							"bStat": "et occaecat commodo consectetur cillum"
+						}
+					}
+				}
+			]
+		}
+	],
+	"components": {}
+}
