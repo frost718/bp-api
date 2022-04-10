@@ -34,7 +34,7 @@ const doc = {
     info: {
         title: "Galateia OpenRpc Spec",
         description: "Standard interface for 124_BP2.0",
-        version: "0.0.3"
+        version: "0.0.4"
     },
     methods: methods,
     components: {

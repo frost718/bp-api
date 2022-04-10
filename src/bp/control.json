@@ -1,0 +1,76 @@
+[
+  {
+    "name": "NLED",
+    "summary": "Get or Set night light",
+    "paramStructure": "by-name",
+    "params": [
+      {
+        "name": "on",
+        "description": "Turns night light on or off: true=on, false=off",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    ],
+    "result": {
+      "name": "on",
+      "schema": {
+        "title": "Status of night light: true=on, false=off",
+        "type": "boolean"
+      }
+    }
+  },
+  {
+    "name": "MCTR",
+    "summary": "Get or Set motor status and speed",
+    "paramStructure": "by-name",
+    "params": [
+      {
+        "name": "on",
+        "description": "Turns motor on and off: true = motor on, false = motor off",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      {
+        "name": "level",
+        "description": "Set motor level",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        }
+      }
+    ],
+    "result": {
+      "name": "MCTR Response",
+      "schema": {
+        "$ref": "#/components/schemas/MotorInformation"
+      }
+    },
+    "examples": [
+      {
+        "name": "valid example",
+        "params": [
+          {
+            "name": "on",
+            "value": false
+          },
+          {
+            "name": "level",
+            "value": 3
+          }
+        ],
+        "result": {
+          "name": "listMotorInformationExample",
+          "value": {
+            "on": false,
+            "level": 71451608,
+            "setSpeed": "3226"
+          }
+        }
+      }
+    ]
+  }
+]

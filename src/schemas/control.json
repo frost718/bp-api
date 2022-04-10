@@ -1,0 +1,25 @@
+{
+  "MotorInformation": {
+    "title": "Information about status and speed of the motor",
+    "type": "object",
+    "required": [
+      "on",
+      "level",
+      "setSpeed"
+    ],
+    "properties": {
+      "on": {
+        "title": "Status of the Motor: true=on, false=off",
+        "type": "boolean"
+      },
+      "level": {
+        "title": "Current Level/Speed setting of Motor, TODO: 1..10?",
+        "$ref": "#/components/schemas/uint"
+      },
+      "setSpeed": {
+        "title": "Motor Soll Umdrehungen pro Minute",
+        "$ref": "#/components/schemas/float"
+      }
+    }
+  }
+}
