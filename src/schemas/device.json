@@ -1,6 +1,11 @@
 {
+  "versionFw": {
+    "title": "firmware version, example: FW_124_BP20_V681416352_84",
+    "type": "string",
+    "pattern": "^FW_124_BP20_V[0-9]{9}_[0-9]{2}$"
+  },
   "DeviceInformation": {
-    "title": "Firmware/PCB Versions and Serial Numbers, Manufacturing Date and Calibration Data",
+    "title": "Firmware/PCB Versions and Serial Numbers, Manufacturing Date and Nutzungszyklusintervall",
     "type": "object",
     "required": [
       "versionFw",
@@ -8,14 +13,14 @@
       "serialDevice",
       "serialPcb",
       "dateManifac",
-      "dateCalib",
-      "intervalCalibration"
+      "nziv"
     ],
     "properties": {
       "versionFw": {
         "$ref": "#/components/schemas/versionFw"
       },
       "versionPcb": {
+        "title": "version of printed circuit board",
         "$ref": "#/components/schemas/uint"
       },
       "serialDevice": {
@@ -28,12 +33,11 @@
         "pattern": "^V[0-9]{10}$"
       },
       "dateManifac": {
+        "title": "Date of Manufacture TODO: fixed value?",
         "$ref": "#/components/schemas/dateTimeISO8601"
       },
-      "dateCalib": {
-        "$ref": "#/components/schemas/dateTimeISO8601"
-      },
-      "intervalCalibration": {
+      "nziv": {
+        "title": "Nutzungszyklus Interval",
         "$ref": "#/components/schemas/uint"
       }
     }

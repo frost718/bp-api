@@ -32,13 +32,9 @@ schemaFiles.forEach(file => {
 const doc = {
     openrpc: "1.2.4",
     info: {
-        title: "Galateia JSON-RPC Spec",
+        title: "Galateia OpenRpc Spec",
         description: "Standard interface for 124_BP2.0",
-        license: {
-            name: "CC0-1.0",
-            url: "https://creativecommons.org/publicdomain/zero/1.0/legalcode"
-        },
-        version: "0.0.1"
+        version: "0.0.2"
     },
     methods: methods,
     components: {

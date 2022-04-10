@@ -1,18 +1,9 @@
 [
   {
     "name": "FINF",
-    "summary": "Get all Device Information including Calibration Data",
+    "summary": "Get all device information",
     "paramStructure": "by-name",
-    "params": [
-      {
-        "name": "setter",
-        "description": "Write Operation",
-        "required": false,
-        "schema": {
-          "type": "boolean"
-        }
-      }
-    ],
+    "params": [],
     "result": {
       "name": "FINF Response",
       "schema": {
@@ -22,22 +13,16 @@
     "examples": [
       {
         "name": "valid example",
-        "params": [
-          {
-            "name": "setter",
-            "value": false
-          }
-        ],
+        "params": [],
         "result": {
           "name": "listFirmwareExample",
           "value": {
             "versionFw": "FW_124_BP20_V795615189_46",
             "versionPcb": 18543481,
-            "serialDevice": "exercitation ex",
+            "serialDevice": "Lorem elit Duis officia nulla",
             "serialPcb": "V6646977116",
             "dateManifac": "2067-10-31T08:54:28",
-            "dateCalib": "2061-01-31T03:46:00",
-            "intervalCalibration": 95912360
+            "nziv": 3
           }
         }
       }
@@ -45,15 +30,15 @@
   },
   {
     "name": "FFLA",
-    "summary": "Flash Firmware onto the device",
+    "summary": "Flash firmware onto the device",
     "paramStructure": "by-name",
     "params": [
       {
-        "name": "setter",
-        "description": "Write Operation",
-        "required": false,
+        "name": "firmware",
+        "description": "Octet Stream?",
+        "required": true,
         "schema": {
-          "type": "boolean"
+          "type": "string"
         }
       }
     ],
@@ -66,18 +51,9 @@
   },
   {
     "name": "DMOD",
-    "summary": "Get Status/Modus of the Device (PreReady, Milkflow)",
+    "summary": "Get modus of the device (PreReady, Milkflow)",
     "paramStructure": "by-name",
-    "params": [
-      {
-        "name": "setter",
-        "description": "Write Operation",
-        "required": false,
-        "schema": {
-          "type": "boolean"
-        }
-      }
-    ],
+    "params": [],
     "result": {
       "name": "modus",
       "schema": {
@@ -91,11 +67,10 @@
     "paramStructure": "by-name",
     "params": [
       {
-        "name": "setter",
-        "description": "Write Operation",
+        "name": "manufacture",
         "required": false,
         "schema": {
-          "type": "boolean"
+          "$ref": "#/components/schemas/dateTimeISO8601"
         }
       }
     ],
@@ -104,26 +79,36 @@
       "schema": {
         "$ref": "#/components/schemas/dateTimeISO8601"
       }
-    }
+    },
+    "examples": [
+      {
+        "name": "valid example",
+        "params": [],
+        "result": {
+          "name": "manufactureDateExample",
+          "value": "2073-07-31T02:07:14"
+        }
+      }
+    ]
   },
   {
-    "name": "ZDAT",
-    "summary": "Get or Set the Calibration Date",
+    "name": "NZIV",
+    "summary": "Get or Set Nutzungszyklen Interval",
     "paramStructure": "by-name",
     "params": [
       {
-        "name": "setter",
-        "description": "Write Operation",
+        "name": "interval",
+        "description": "Interval in minutes",
         "required": false,
         "schema": {
-          "type": "boolean"
+          "$ref": "#/components/schemas/uint"
         }
       }
     ],
     "result": {
-      "name": "calib",
+      "name": "interval",
       "schema": {
-        "$ref": "#/components/schemas/dateTimeISO8601"
+        "$ref": "#/components/schemas/uint"
       }
     }
   },
@@ -133,11 +118,10 @@
     "paramStructure": "by-name",
     "params": [
       {
-        "name": "setter",
-        "description": "Write Operation",
+        "name": "serial",
         "required": false,
         "schema": {
-          "type": "boolean"
+          "type": "string"
         }
       }
     ],
@@ -145,6 +129,32 @@
       "name": "serial",
       "schema": {
         "type": "string"
+      }
+    }
+  },
+  {
+    "name": "CECZ",
+    "summary": "Clear system data",
+    "paramStructure": "by-name",
+    "params": [],
+    "result": {
+      "name": "key",
+      "description": "TODO: Device Serial Number (Bluetooth?) to prevent unexpected clearing of calibration data",
+      "schema": {
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "DVMD",
+    "summary": "turn device into USB boot mode",
+    "paramStructure": "by-name",
+    "params": [],
+    "result": {
+      "name": "null",
+      "description": "no response from device due to hardware reset",
+      "schema": {
+        "type": "null"
       }
     }
   }
