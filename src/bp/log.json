@@ -1,0 +1,56 @@
+[
+  {
+    "name": "GLOG",
+    "summary": "Get log protocol of saved pump sessions",
+    "paramStructure": "by-name",
+    "params": [
+      {
+        "name": "dateFrom",
+        "description": "Date from which to fetch all logs (fetch all logs recorded since this date)",
+        "required": false,
+        "schema": {
+          "$ref": "#/components/schemas/dateTimeISO8601"
+        }
+      }
+    ],
+    "result": {
+      "name": "GLOG Response",
+      "schema": {
+        "$ref": "#/components/schemas/Log"
+      }
+    },
+    "examples": [
+      {
+        "name": "valid example",
+        "params": [],
+        "result": {
+          "name": "listLogExample",
+          "value": {
+            "logs": [
+              {
+                "dateFrom": "1976-12-31T23:41:15",
+                "dateTo": "1922-07-31T01:45:20",
+                "milkVolume": "4374850438.65"
+              },
+              {
+                "dateFrom": "2090-03-25T21:00:22",
+                "dateTo": "2038-01-31T14:36:13",
+                "milkVolume": "+82.7"
+              },
+              {
+                "dateFrom": "1950-10-30T15:48:37",
+                "dateTo": "1931-07-30T04:45:34",
+                "milkVolume": "53604910.460"
+              },
+              {
+                "dateFrom": "1976-11-30T21:24:34",
+                "dateTo": "1968-12-30T03:34:35",
+                "milkVolume": "001139"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+]

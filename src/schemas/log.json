@@ -1,0 +1,41 @@
+{
+  "Log": {
+    "title": "Describes a list of pump-sessions",
+    "type": "object",
+    "required": [
+      "logs"
+    ],
+    "properties": {
+      "logs": {
+        "title": "A list of pump-sessions",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/LogItem"
+        }
+      }
+    }
+  },
+  "LogItem": {
+    "title": "Describes one pump-session",
+    "type": "object",
+    "required": [
+      "dateFrom",
+      "dateTo",
+      "milkVolume"
+    ],
+    "properties": {
+      "dateFrom": {
+        "title": "DateTime Stamp of session start",
+        "$ref": "#/components/schemas/dateTimeISO8601"
+      },
+      "dateTo": {
+        "title": "DateTime Stamp of session end",
+        "$ref": "#/components/schemas/dateTimeISO8601"
+      },
+      "milkVolume": {
+        "title": "Total volume of milk produced in milliliters",
+        "$ref": "#/components/schemas/float"
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@
 	"info": {
 		"title": "Galateia OpenRpc Spec",
 		"description": "Standard interface for 124_BP2.0",
-		"version": "0.0.2"
+		"version": "0.0.4"
 	},
 	"methods": [
 		{
@@ -310,6 +310,98 @@
 			}
 		},
 		{
+			"name": "GLOG",
+			"summary": "Get log protocol of saved pump sessions",
+			"paramStructure": "by-name",
+			"params": [
+				{
+					"name": "dateFrom",
+					"description": "Date from which to fetch all logs (fetch all logs recorded since this date)",
+					"required": false,
+					"schema": {
+						"title": "valid DateTime without timezone, example: 2011-01-31T00:59:59 (02-29 leap years are false positives)",
+						"type": "string",
+						"pattern": "^(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))T(?:(?:0|1)[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"
+					}
+				}
+			],
+			"result": {
+				"name": "GLOG Response",
+				"schema": {
+					"title": "Describes a list of pump-sessions",
+					"type": "object",
+					"required": [
+						"logs"
+					],
+					"properties": {
+						"logs": {
+							"title": "A list of pump-sessions",
+							"type": "array",
+							"items": {
+								"title": "Describes one pump-session",
+								"type": "object",
+								"required": [
+									"dateFrom",
+									"dateTo",
+									"milkVolume"
+								],
+								"properties": {
+									"dateFrom": {
+										"title": "DateTime Stamp of session start",
+										"type": "string",
+										"pattern": "^(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))T(?:(?:0|1)[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"
+									},
+									"dateTo": {
+										"title": "DateTime Stamp of session end",
+										"type": "string",
+										"pattern": "^(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))T(?:(?:0|1)[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"
+									},
+									"milkVolume": {
+										"type": "string",
+										"pattern": "^[+-]?([0-9]*[.])?[0-9]+$",
+										"title": "Total volume of milk produced in milliliters"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"examples": [
+				{
+					"name": "valid example",
+					"params": [],
+					"result": {
+						"name": "listLogExample",
+						"value": {
+							"logs": [
+								{
+									"dateFrom": "1976-12-31T23:41:15",
+									"dateTo": "1922-07-31T01:45:20",
+									"milkVolume": "4374850438.65"
+								},
+								{
+									"dateFrom": "2090-03-25T21:00:22",
+									"dateTo": "2038-01-31T14:36:13",
+									"milkVolume": "+82.7"
+								},
+								{
+									"dateFrom": "1950-10-30T15:48:37",
+									"dateTo": "1931-07-30T04:45:34",
+									"milkVolume": "53604910.460"
+								},
+								{
+									"dateFrom": "1976-11-30T21:24:34",
+									"dateTo": "1968-12-30T03:34:35",
+									"milkVolume": "001139"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
 			"name": "DUME",
 			"summary": "Get current value of all sensors",
 			"paramStructure": "by-name",
@@ -328,7 +420,10 @@
 						"mCurrentSpeed",
 						"mV",
 						"mPWM",
-						"mwInk"
+						"mwInk",
+						"bStat",
+						"bV",
+						"nutzungsZyklen"
 					],
 					"properties": {
 						"vLevel": {
